@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pausa — saúde mental</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+<section id="hoje" class="on">
+  <div class="hero"><div class="logo-img" role="img" aria-label="Logo Saúde Mental em Foco no SENAC: um cérebro sorridente cercado de pessoas"></div><div><b>Saúde mental em foco no SENAC</b><span class="mut">Conectando mentes, construindo forças</span></div></div>
+  <h1>Como você está agora?</h1>
+  <p class="mut">Um registro rápido por dia ajuda a perceber padrões.</p>
+  <div class="card">
+    <div class="moods" id="moods" role="group" aria-label="Seu humor"></div>
+    <textarea id="mnote" placeholder="Quer anotar o que influenciou? (opcional)"></textarea>
+    <p style="margin:12px 0 0"><button class="btn" id="msave">Salvar humor</button> <span id="mok" class="mut" role="status"></span></p>
+  </div>
+  <div class="card"><h2>Últimos 7 dias</h2><div class="week" id="week"></div></div>
+</section>
+
+<section id="respirar">
+  <div class="brain-img" role="img" aria-label="Cérebro sorridente"></div>
+  <h1 style="text-align:center">Respirar</h1>
+  <p class="mut">Inspire por 4 segundos, segure por 4 e solte por 6. Repita por alguns minutos.</p>
+  <div class="card">
+    <div class="breath"><div class="orb" id="orb"><svg viewBox="0 0 200 180" role="img" aria-label="Pulmões que se expandem e se contraem" style="color:var(--ink)"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><defs><g id="lg"><path d="M90 58C64 46 28 70 22 118C17 152 36 168 66 164C86 161 92 146 92 126Z" fill="#fca2a1" stroke-width="4"/><path d="M92 74C74 84 60 102 52 132M73 96C62 98 50 102 38 114" stroke="#fde1c9" stroke-width="3.5"/><circle cx="44" cy="140" r="6" fill="#ffa8bb" stroke="none" opacity=".8"/></g></defs><use href="#lg"/><use href="#lg" transform="translate(200,0) scale(-1,1)"/><path d="M100 6V62M100 62C100 76 92 80 88 90M100 62C100 76 108 80 112 90" stroke-width="11"/><path d="M100 6V62M100 62C100 76 92 80 88 90M100 62C100 76 108 80 112 90" stroke="#fde1c9" stroke-width="5"/></g></svg></div></div>
+    <p class="lab" id="olab" aria-live="polite">Pronto?</p>
+    <p style="text-align:center;margin:0"><button class="btn" id="bgo">Começar</button></p>
+  </div>
+</section>
+
+<section id="jogos">
+  <h1>Jogos</h1>
+  <p class="mut">Atividades leves para acalmar a mente e tirar o foco da preocupação. Jogue no seu ritmo, sem pontuação certa ou errada.</p>
+  <div class="card"><h2>Estoura-bolhas</h2><p class="mut">Estoure uma bolha de cada vez e solte o ar devagar a cada estouro.</p><div class="bub" id="bub"></div><p style="margin:12px 0 0"><span id="bc" class="mut">0 estouradas</span> <button class="btn alt" id="br">Reencher</button></p></div>
+  <div class="card"><h2>Memória da calma</h2><p class="mut">Vire as cartas e encontre os 6 pares. Foque só no jogo.</p><div class="mem" id="mem"></div><p style="margin:12px 0 0"><span id="mm" class="mut" role="status"></span> <button class="btn alt" id="mr">Novo jogo</button></p></div>
+  <div class="card"><h2>Contagem de 7 em 7</h2><p class="mut">Comece em 100 e vá subtraindo 7. Ocupa a mente, sem pressa.</p><p id="cp" style="font:400 30px 'DM Serif Display',Georgia,serif;margin:8px 0">100 − 7 = ?</p><input id="ci" type="number" inputmode="numeric" aria-label="Sua resposta"> <button class="btn" id="cb">Conferir</button> <button class="btn alt" id="cz">Recomeçar</button><p id="cm" class="mut" role="status" style="margin:10px 0 0"></p></div>
+  <div class="card"><h2>Mito ou verdade?</h2><p class="mut" id="mvq"></p><p style="margin-top:10px"><button class="btn alt" id="mvm">Mito</button> <button class="btn alt" id="mvv">Verdade</button> <button class="btn" id="mvn" hidden>Próxima</button></p><p id="mvr" role="status"></p></div>
+  <div class="card"><h2>Aterramento 5-4-3-2-1</h2><p class="mut" id="gs">Traga a atenção para o presente, um sentido de cada vez.</p><button class="btn" id="gn">Começar</button></div>
+  <div class="card"><h2>Caça às cores</h2><p class="mut" id="gc">Distraia a mente olhando o ambiente com atenção.</p><button class="btn alt" id="gcn">Sortear cor</button></div>
+  </section>
+
+<section id="sons">
+  <h1>Sons relaxantes</h1>
+  <p class="mut">Misture quantos quiser. Os sons são gerados no próprio aparelho e continuam tocando enquanto você usa outras abas.</p>
+  <div class="card">
+    <div class="snd" id="snd"></div>
+    <p style="margin:16px 0 0"><label for="vol" class="mut">Volume</label><br><input id="vol" type="range" min="0" max="100" value="50" style="width:100%"></p>
+    <p style="margin:12px 0 0"><button class="btn alt" id="sstop">Parar tudo</button></p>
+  </div>
+</section>
+
+<section id="mandala">
+  <h1>Mandala</h1>
+  <p class="mut">Desenhe com o dedo e veja o traço se repetir em simetria. Sem certo ou errado: foque só no movimento e na respiração.</p>
+  <div class="card">
+    <canvas id="cv" width="600" height="600" aria-label="Área de desenho da mandala"></canvas>
+    <div class="tools" id="sw"></div>
+    <div class="tools">
+      <button class="btn alt" data-n="6">6 eixos</button><button class="btn alt" data-n="8">8 eixos</button><button class="btn alt" data-n="12">12 eixos</button>
+      <button class="btn" id="mclr">Limpar</button>
+    </div>
+  </div>
+</section>
+
+<section id="diario">
+  <h1>Diário</h1>
+  <p class="mut" id="prompt"></p>
+  <div class="card">
+    <textarea id="dtext" placeholder="Escreva sem se preocupar com o certo ou errado."></textarea>
+    <p style="margin:12px 0 0"><button class="btn" id="dsave">Salvar entrada</button> <button class="btn alt" id="dnew">Outra pergunta</button></p>
+  </div>
+  <div class="card" id="dlist"></div>
+</section>
+
+<section id="explorar">
+  <h1>Explorar</h1>
+  <p class="mut">Ideias para cuidar da mente: brincar, ouvir e assistir.</p>
+  <details class="card" open><summary>Jogos divertidos em grupo</summary><div id="games"></div><p class="mut" style="margin:10px 0 0">Cuidar da mente também é rir, brincar e se conectar!</p></details>
+  <details class="card"><summary>Playlist: Becoming Myself</summary><p class="mut">Minha melhor versão: uma playlist para refletir, sonhar, se cuidar e evoluir. Toque em Ouvir para buscar a música.</p><div id="music"></div></details>
+  <details class="card"><summary>Filmes sobre saúde mental</summary><div id="movies"></div></details>
+</section>
+
+<section id="ajuda" class="help">
+  <h1>Precisa de ajuda agora?</h1>
+  <p class="mut">Você não precisa passar por isso sozinho. No Brasil, estes serviços são gratuitos:</p>
+  <div class="card"><ul>
+    <li><a href="tel:188">CVV — 188</a>Apoio emocional e prevenção do suicídio, 24 horas. Também por chat em cvv.org.br.</li>
+    <li><a href="tel:192">SAMU — 192</a>Emergências médicas e psiquiátricas.</li>
+    <li><a href="tel:136">Disque Saúde — 136</a>Orientação sobre o atendimento no SUS, incluindo os CAPS (Centros de Atenção Psicossocial).</li>
+  </ul></div>
+  <h2 style="margin-top:28px">Onde pedir ajuda</h2>
+  <p class="mut">Informações de Crato (CE) conforme você enviou. Confirme endereço e horário antes de ir.</p>
+  <div class="card pl"><h3>CAPS – Centro de Atenção Psicossocial</h3><p>Rua Coronel Antônio Luiz, 1325, bairro Pimenta.</p><p class="mut">Atende sofrimento psíquico, incluindo ansiedade e depressão, e uso de álcool e outras drogas. Costuma oferecer atendimento individual, em grupo e oficinas.</p><a href="tel:8835212229">Ligar: (88) 3521-2229</a></div>
+  <div class="card pl"><h3>Novo CAPS AD</h3><p class="mut">Em construção no bairro Nossa Senhora de Fátima, com ordem de serviço assinada em junho de 2026. Pergunte à Secretaria de Saúde sobre a data de abertura.</p></div>
+  <div class="card pl"><h3>Posto de saúde (UBS)</h3><p class="mut">A porta de entrada do SUS. Procure a UBS do seu bairro e peça acolhimento em saúde mental. Leve documento com foto, CPF e Cartão SUS.</p></div>
+  <div class="card pl"><h3>Grupos de apoio</h3><p class="mut">Pergunte no CAPS ou na UBS sobre grupos e oficinas. Para achar reuniões na sua região, busque:</p>
+    <a href="https://www.google.com/search?q=Alco%C3%B3licos+An%C3%B4nimos+reuni%C3%B5es+Brasil" target="_blank" rel="noopener noreferrer">Alcoólicos Anônimos</a>
+    <a href="https://www.google.com/search?q=Narc%C3%B3ticos+An%C3%B4nimos+reuni%C3%B5es+Brasil" target="_blank" rel="noopener noreferrer">Narcóticos Anônimos</a>
+    <a href="https://www.google.com/search?q=Al-Anon+Brasil+reuni%C3%B5es+familiares" target="_blank" rel="noopener noreferrer">Al-Anon (para familiares)</a></div>
+  <h2 style="margin-top:28px">Livros de autoajuda</h2>
+  <p class="mut">Sugestões de leitura. Os links abrem uma busca pelo título.</p>
+  <div class="card" id="books"></div>
+  <p class="mut" style="margin-top:16px">Este app é um apoio ao autocuidado e não substitui acompanhamento com psicólogo ou psiquiatra. Seus registros ficam só neste navegador. Saúde mental em foco no SENAC: conectando mentes, construindo forças.</p>
+</section>
+</main>
+
+<button class="sos" id="sos">Preciso de ajuda</button>
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Ajuda imediata">
+  <div class="sheet">
+    <h2>Um passo de cada vez</h2>
+    <p class="mut">Se você está em perigo ou pensando em se machucar, ligue agora. Há pessoas prontas para ouvir.</p>
+    <a class="btn" href="tel:188">Ligar para o CVV — 188</a>
+    <a class="btn" href="tel:192">Ligar para o SAMU — 192</a>
+    <p style="margin:14px 0 6px"><b>Para se acalmar agora (5-4-3-2-1):</b></p>
+    <p class="mut">Nomeie 5 coisas que você vê, 4 que você toca, 3 que você ouve, 2 que você cheira e 1 que você sente o gosto. Respire devagar entre cada uma.</p>
+    <p><button class="btn alt" id="sbr">Respirar comigo</button> <button class="btn alt" id="scl">Fechar</button></p>
+  </div>
+</div>
+
+<nav role="tablist" aria-label="Seções">
+  <button role="tab" data-t="hoje" aria-selected="true">Hoje</button>
+  <button role="tab" data-t="respirar" aria-selected="false">Respirar</button>
+  <button role="tab" data-t="jogos" aria-selected="false">Jogos</button>
+  <button role="tab" data-t="sons" aria-selected="false">Sons</button>
+  <button role="tab" data-t="mandala" aria-selected="false">Mandala</button>
+  <button role="tab" data-t="diario" aria-selected="false">Diário</button>
+  <button role="tab" data-t="explorar" aria-selected="false">Explorar</button>
+  <button role="tab" data-t="ajuda" aria-selected="false">Apoio</button>
+</nav>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var S={moods:[],notes:[]};
+try{var r=localStorage.getItem('pausa');if(r)S=JSON.parse(r)}catch(e){}
+if(!S.moods)S.moods=[];if(!S.notes)S.notes=[];
+function save(){try{localStorage.setItem('pausa',JSON.stringify(S))}catch(e){}}
+function day(d){return d.toISOString().slice(0,10)}
+function today(){var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return day(d)}
+
+// abas
+function show(t){
+  document.querySelectorAll('section').forEach(function(s){s.classList.toggle('on',s.id===t)});
+  document.querySelectorAll('nav button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.t===t)});
+  if(t!=='respirar')stop();
+  var nb=document.querySelector('nav button[data-t="'+t+'"]');if(nb&&nb.scrollIntoView)nb.scrollIntoView({inline:'center',block:'nearest'});
+  window.scrollTo(0,0);
+  try{history.replaceState(null,'','#'+t)}catch(e){}
+}
+document.querySelectorAll('nav button').forEach(function(b){b.onclick=function(){show(b.dataset.t)}});
+var h=(location.hash||'').slice(1);if(['hoje','respirar','jogos','sons','mandala','diario','explorar','ajuda'].indexOf(h)>-1)show(h);
+
+// humor
+var L=['Muito mal','Mal','Ok','Bem','Muito bem'],C=['--m1','--m2','--m3','--m4','--m5'],sel=0;
+var mw=$('moods');
+L.forEach(function(l,i){
+  var b=document.createElement('button');b.setAttribute('aria-pressed','false');
+  b.innerHTML='<i style="background:var('+C[i]+')">'+['😭','😟','😐','🙂','😄'][i]+'</i>'+l;
+  b.onclick=function(){sel=i+1;[].forEach.call(mw.children,function(x,j){x.setAttribute('aria-pressed',j===i)})};
+  mw.appendChild(b);
+});
+$('msave').onclick=function(){
+  if(!sel){$('mok').textContent='Escolha como você está.';return}
+  var t=today();S.moods=S.moods.filter(function(m){return m.d!==t});
+  S.moods.push({d:t,v:sel,n:$('mnote').value.trim()});save();
+  $('mnote').value='';$('mok').textContent='Humor salvo.';week();
+};
+function week(){
+  var w=$('week');w.innerHTML='';var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  for(var i=6;i>=0;i--){
+    var x=new Date(d);x.setDate(d.getDate()-i);var k=day(x);
+    var m=S.moods.filter(function(m){return m.d===k})[0];
+    var c=document.createElement('div');
+    var b=document.createElement('b');
+    if(m){b.style.height=(m.v*18)+'%';b.style.background='var('+C[m.v-1]+')';b.title=L[m.v-1]}
+    c.appendChild(b);c.appendChild(document.createTextNode(['D','S','T','Q','Q','S','S'][x.getDay()]));
+    w.appendChild(c);
+  }
+}
+week();
+
+// respiração
+var timer=null,running=false;
+var orb=$('orb'),bgo=$('bgo');
+function phase(txt,scale,secs){orb.style.transitionDuration=secs+'s';orb.style.transform='scale('+scale+')';$('olab').textContent=txt}
+function cycle(){
+  if(!running)return;
+  phase('Inspire',1.4,4);
+  timer=setTimeout(function(){if(!running)return;phase('Segure',1.4,0.1);
+    timer=setTimeout(function(){if(!running)return;phase('Solte',1,6);
+      timer=setTimeout(cycle,6000)},4000)},4000);
+}
+function stop(){running=false;clearTimeout(timer);if(orb){orb.style.transitionDuration='1s';orb.style.transform='scale(1)';$('olab').textContent='Pronto?'}if(bgo)bgo.textContent='Começar'}
+bgo.onclick=function(){if(running){stop()}else{running=true;bgo.textContent='Parar';cycle()}};
+
+// diário
+var P=['O que pesou hoje, e o que ajudou, mesmo que um pouco?','Do que você precisa neste momento?','Que pensamento se repetiu hoje? O que você diria a um amigo que pensasse isso?','Cite três coisas pequenas que correram bem hoje.','O que você pode deixar para amanhã?'];
+var pi=0;function setP(){$('prompt').textContent=P[pi%P.length]}setP();
+$('dnew').onclick=function(){pi++;setP()};
+$('dsave').onclick=function(){
+  var t=$('dtext').value.trim();if(!t)return;
+  S.notes.unshift({d:new Date().toLocaleDateString('pt-BR',{day:'numeric',month:'long'}),q:P[pi%P.length],t:t});save();$('dtext').value='';list();
+};
+function list(){
+  var l=$('dlist');l.innerHTML='';
+  if(!S.notes.length){l.innerHTML='<p class="mut" style="margin:0">Suas entradas aparecem aqui. Escreva a primeira acima.</p>';return}
+  S.notes.slice(0,20).forEach(function(n){
+    var e=document.createElement('div');e.className='entry';
+    var s=document.createElement('small');s.textContent=n.d+' · '+n.q;
+    e.appendChild(s);e.appendChild(document.createTextNode(n.t));l.appendChild(e);
+  });
+}
+list();
+
+// socorro
+function ov(o){$('ov').classList.toggle('on',o)}
+$('sos').onclick=function(){ov(true)};$('scl').onclick=function(){ov(false)};
+$('ov').onclick=function(e){if(e.target===this)ov(false)};
+$('sbr').onclick=function(){ov(false);show('respirar')};
+
+// livros
+var B=[['Mindfulness: Atenção Plena','Mark Williams e Danny Penman'],['O Poder do Agora','Eckhart Tolle'],['Ansiedade: Como Enfrentar o Mal do Século','Augusto Cury'],['A Coragem de Ser Imperfeito','Brené Brown'],['Aonde Quer que Eu Vá, Lá Estou','Jon Kabat-Zinn']];
+B.forEach(function(b){
+  var d=document.createElement('div');d.className='bk';
+  var t=document.createElement('div');t.innerHTML='<b></b><br><span class="mut"></span>';
+  t.firstChild.textContent=b[0];t.lastChild.textContent=b[1];
+  var a=document.createElement('a');a.textContent='Buscar';a.target='_blank';a.rel='noopener noreferrer';
+  a.href='https://www.google.com/search?q='+encodeURIComponent('livro '+b[0]+' '+b[1]);
+  d.appendChild(t);d.appendChild(a);$('books').appendChild(d);
+});
+
+// explorar
+function item(p,t,d){var e=document.createElement('div');e.className='it';var b=document.createElement('b');b.textContent=t;var q=document.createElement('p');q.className='mut';q.textContent=d;e.appendChild(b);e.appendChild(q);$(p).appendChild(e)}
+[['Mímica das Emoções','Sorteie uma emoção ou situação do dia a dia e faça mímica para o grupo adivinhar. Trabalha a expressão emocional com muito humor.'],
+['Batata Quente da Gratidão','Passe um objeto ao som de música. Quando parar, quem estiver com ele diz algo bom do seu dia ou um elogio a um colega.'],
+['Detetive do Bem-Estar','Cada pessoa escreve um hábito secreto que a ajuda a relaxar. O grupo faz perguntas divertidas para descobrir de quem é.'],
+['Desafio do Pote da Alegria','Tire papéis de um pote com desafios leves e engraçados, como imitar um som relaxante, contar uma piada ou dar um abraço coletivo.']
+].forEach(function(x){item('games',x[0],x[1])});
+var M=[['Encontrar seu propósito e sentido para a vida',[['Vienna','Billy Joel'],['What Was I Made For?','Billie Eilish'],['The Climb','Miley Cyrus'],['Unwritten','Natasha Bedingfield'],['A Vida é Desafio',"Racionais MC's"]]],
+['Amor-próprio e autoestima',[['Scars to Your Beautiful','Alessia Cara'],['Born This Way','Lady Gaga'],['Love Myself','Hailee Steinfeld'],['Good as Hell','Lizzo'],['Beautiful','Christina Aguilera'],['i','Kendrick Lamar']]],
+['Saúde mental e equilíbrio emocional',[['After the Storm','Kali Uchis'],['Rainbow','Kesha'],['Keep Your Head Up','Andy Grammer'],['Three Little Birds','Bob Marley']]],
+['Evolução pessoal e motivação',[['A Sky Full of Stars','Coldplay'],['The Nights','Avicii'],['Shake It Out','Florence + The Machine'],['Firework','Katy Perry'],['Dog Days Are Over','Florence + The Machine'],['Eu Vou Seguir','Marina Elali']]],
+['Músicas brasileiras para refletir sobre a vida',[['Trem-Bala','Ana Vilela'],['Paciência','Lenine'],['Dias Melhores','Jota Quest'],['Mais Uma Vez','Renato Russo'],['Enquanto Houver Sol','Titãs'],['É Preciso Saber Viver','Titãs']]]];
+M.forEach(function(c){
+  var h=document.createElement('div');h.className='cat';h.textContent=c[0];$('music').appendChild(h);
+  c[1].forEach(function(s){
+    var r=document.createElement('div');r.className='sg';
+    var t=document.createElement('span');t.textContent=s[0]+' — '+s[1];
+    var a=document.createElement('a');a.textContent='Ouvir';a.target='_blank';a.rel='noopener noreferrer';
+    a.href='https://www.youtube.com/results?search_query='+encodeURIComponent(s[0]+' '+s[1]);
+    r.appendChild(t);r.appendChild(a);$('music').appendChild(r);
+  });
+});
+[['Divertida Mente (2015)','Mostra como as emoções influenciam nossos sentimentos e comportamentos.'],
+['As Vantagens de Ser Invisível (2012)','Aborda sofrimento emocional, traumas, bullying, amizade e a importância de buscar apoio.'],
+['Nise: O Coração da Loucura (2015)','Retrata o cuidado humanizado em saúde mental e o uso da arte como parte do tratamento.'],
+['O Mínimo para Viver (2017)','Aborda a anorexia e os desafios de quem enfrenta um transtorno alimentar, destacando a importância do tratamento. Pode ser um tema sensível: assista com cuidado.'],
+['Extraordinário (2017)','Fala sobre bullying, autoestima, empatia, aceitação e respeito às diferenças.'],
+['O Lado Bom da Vida (2012)','Aborda saúde mental, relações afetivas, recuperação e a importância do acompanhamento profissional.']
+].forEach(function(x,i){
+  var CV=[['#6ec1f0','#f6d65c','🧠'],['#7a8fd0','#c9a4d6','🎧'],['#f4a08f','#e0aec7','🎨'],['#9ad4a8','#f0d878','🌱'],['#5a6fb8','#8ec9de','🧑‍🚀'],['#f0a860','#e8574f','💃']][i];
+  item('movies',x[0],x[1]);var e=$('movies').lastChild,c=document.createElement('div');
+  c.className='cov';c.style.background='linear-gradient(160deg,'+CV[0]+','+CV[1]+')';
+  c.setAttribute('role','img');c.setAttribute('aria-label','Capa ilustrativa de '+x[0].split(' (')[0]);
+  c.innerHTML='<span>'+CV[2]+'</span><small>'+x[0].match(/\((\d+)\)/)[1]+'</small>';
+  e.insertBefore(c,e.firstChild);e.classList.add('mv');
+});
+
+// jogos jogáveis
+var bub=$('bub'),bn=0,PC=['#fca2a1','#fcedb2','#c6e1ce','#8ec9de','#e0aec7'];
+function blip(f){try{var c=ac(),o=c.createOscillator(),k=c.createGain();o.frequency.setValueAtTime(f,c.currentTime);o.frequency.exponentialRampToValueAtTime(f/2,c.currentTime+.1);k.gain.setValueAtTime(.25,c.currentTime);k.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.connect(k);k.connect(master);o.start();o.stop(c.currentTime+.13)}catch(e){}}
+function fillB(){bub.innerHTML='';bn=0;$('bc').textContent='0 estouradas';
+  for(var i=0;i<30;i++){(function(i){var b=document.createElement('button');b.setAttribute('aria-label','Bolha');
+    b.style.background='radial-gradient(circle at 32% 28%,#ffffffcc,'+PC[i%5]+')';
+    b.onclick=function(){if(b.classList.contains('p'))return;b.classList.add('p');b.style.background='none';bn++;blip(300+Math.random()*300);
+      $('bc').textContent=bn+(bn===1?' estourada':' estouradas')+(bn===30?'. Respire fundo e solte o ar devagar.':'')};
+    bub.appendChild(b)})(i)}}
+$('br').onclick=fillB;fillB();
+var ME=['🌿','🌊','🌙','☀️','🦋','🌸'],mf=null,ml=false,mm=0,mp=0;
+function mk(){var a=ME.concat(ME).sort(function(){return Math.random()-.5}),m=$('mem');m.innerHTML='';mm=0;mp=0;mf=null;ml=false;$('mm').textContent='0 jogadas';
+  a.forEach(function(e){var c=document.createElement('button');c.className='mc';c.setAttribute('aria-label','Carta virada para baixo');
+    c.onclick=function(){if(ml||c.classList.contains('on'))return;c.classList.add('on');c.textContent=e;
+      if(!mf){mf=c;return}
+      mm++;$('mm').textContent=mm+' jogadas';
+      if(mf.textContent===e){mf.classList.add('ok');c.classList.add('ok');mf=null;mp++;if(mp===6)$('mm').textContent='Você achou todos os pares em '+mm+' jogadas!'}
+      else{ml=true;var f=mf;mf=null;setTimeout(function(){f.classList.remove('on');c.classList.remove('on');f.textContent='';c.textContent='';ml=false},800)}};
+    m.appendChild(c)})}
+$('mr').onclick=mk;mk();
+var cur=100,cdone=false;
+function cpr(){$('cp').textContent=cur+' − 7 = ?'}
+$('cb').onclick=function(){if(cdone)return;var v=parseInt($('ci').value,10);if(isNaN(v))return;
+  if(v===cur-7){cur-=7;$('ci').value='';
+    if(cur<7){cdone=true;$('cp').textContent='Chegou ao '+cur+'!';$('cm').textContent='Fim do desafio. Respire fundo e solte o ar devagar.';return}
+    $('cm').textContent='Certo!';cpr()}
+  else $('cm').textContent='Quase. Sem pressa, tente de novo.'};
+$('cz').onclick=function(){cur=100;cdone=false;$('ci').value='';$('cm').textContent='';cpr()};
+$('ci').onkeydown=function(e){if(e.key==='Enter')$('cb').click()};
+
+// jogos da ansiedade
+var Q=[['Uma crise de pânico pode me matar.',false,'Parece que o coração vai parar, mas a crise é intensa e passa, geralmente em poucos minutos. Se for a primeira vez ou houver dor forte no peito, procure um serviço de saúde.'],
+['Soltar o ar devagar ajuda o corpo a se acalmar.',true,'Expirar mais devagar do que inspirar avisa ao corpo que ele pode desacelerar. Tente 4 segundos puxando e 6 soltando.'],
+['Ansiedade é frescura ou fraqueza.',false,'É uma resposta do corpo, comum e tratável. Ter ansiedade não diz nada sobre a sua força.'],
+['Fugir de tudo o que me dá medo resolve a ansiedade.',false,'Evitar alivia na hora, mas costuma aumentar o medo com o tempo. Com apoio profissional, dá para enfrentar aos poucos.'],
+['Conversar com um profissional pode ajudar.',true,'Terapia e, quando indicado, acompanhamento médico tratam bem a ansiedade. O CAPS e a UBS são portas de entrada no SUS.']];
+var qi=0;
+function showQ(){$('mvq').textContent=Q[qi][0];$('mvr').textContent='';$('mvn').hidden=true;$('mvm').disabled=false;$('mvv').disabled=false}
+function ans(v){$('mvm').disabled=true;$('mvv').disabled=true;var q=Q[qi];
+  $('mvr').textContent=(v===q[1]?'Isso mesmo! ':'Quase! ')+(q[1]?'É verdade. ':'É um mito. ')+q[2];$('mvn').hidden=false}
+$('mvm').onclick=function(){ans(false)};$('mvv').onclick=function(){ans(true)};
+$('mvn').onclick=function(){qi=(qi+1)%Q.length;showQ()};showQ();
+var GS=['Olhe ao redor e nomeie 5 coisas que você vê.','Toque em 4 coisas e perceba a textura de cada uma.','Escute 3 sons ao seu redor.','Perceba 2 cheiros, ou lembre de 2 cheiros de que você gosta.','Perceba 1 gosto na boca ou respire fundo uma vez.','Pronto. Solte o ar devagar. Como o corpo está agora?'],gi=0;
+$('gn').onclick=function(){if(gi>=GS.length)gi=0;$('gs').textContent=GS[gi];gi++;this.textContent=gi>=GS.length?'Recomeçar':'Próximo'};
+var CR=[['vermelhas','#e8574f'],['azuis','#4f8ed9'],['verdes','#4fae6f'],['amarelas','#e0b52e'],['brancas','#c9ced4'],['pretas','#333'],['marrons','#8a5a3c']];
+$('gcn').onclick=function(){var c=CR[Math.floor(Math.random()*CR.length)];$('gc').innerHTML='<span class="dot" style="background:'+c[1]+'"></span> Encontre 3 coisas '+c[0]+' ao seu redor.'};
+
+// sons (Web Audio)
+var AC=null,master=null,live={};
+function ac(){if(!AC){AC=new (window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.5;master.connect(AC.destination)}if(AC.state==='suspended')AC.resume();return AC}
+function noise(c,brown){var n=c.sampleRate*3,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0),l=0;
+  for(var i=0;i<n;i++){var w=Math.random()*2-1;if(brown){l=(l+.02*w)/1.02;d[i]=l*3.5}else d[i]=w*.6}
+  var s=c.createBufferSource();s.buffer=b;s.loop=true;return s}
+function lfo(c,f,depth,target){var o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=depth;o.connect(g);g.connect(target);o.start();return o}
+var SND={
+ 'Chuva':function(c,out){var s=noise(c,false),hp=c.createBiquadFilter(),lp=c.createBiquadFilter();hp.type='highpass';hp.frequency.value=700;lp.type='lowpass';lp.frequency.value=7000;s.connect(hp);hp.connect(lp);lp.connect(out);s.start();return [s]},
+ 'Oceano':function(c,out){var s=noise(c,true),lp=c.createBiquadFilter(),g=c.createGain();lp.type='lowpass';lp.frequency.value=800;g.gain.value=.5;s.connect(lp);lp.connect(g);g.connect(out);s.start();return [s,lfo(c,.09,.4,g.gain)]},
+ 'Vento':function(c,out){var s=noise(c,true),bp=c.createBiquadFilter();bp.type='bandpass';bp.frequency.value=450;bp.Q.value=.9;s.connect(bp);bp.connect(out);s.start();return [s,lfo(c,.06,250,bp.frequency)]},
+ 'Tigela tibetana':function(c,out){var r=[],g=c.createGain();g.gain.value=.12;g.connect(out);[174.6,261.6,392].forEach(function(f,i){var o=c.createOscillator();o.type='sine';o.frequency.value=f;var m=c.createGain();m.gain.value=.5;o.connect(m);m.connect(g);o.start();r.push(o);r.push(lfo(c,.15+i*.05,.25,m.gain))});return r}
+};
+Object.keys(SND).forEach(function(k){
+  var b=document.createElement('button');b.textContent=k;b.setAttribute('aria-pressed','false');
+  b.onclick=function(){
+    var c=ac();
+    if(live[k]){off(k);b.setAttribute('aria-pressed','false');return}
+    var out=c.createGain();out.gain.value=0;out.connect(master);
+    var nodes=SND[k](c,out);out.gain.linearRampToValueAtTime(.7,c.currentTime+2);
+    live[k]={out:out,nodes:nodes,b:b};b.setAttribute('aria-pressed','true');
+  };
+  $('snd').appendChild(b);
+});
+function off(k){var o=live[k];if(!o)return;var c=AC;o.out.gain.cancelScheduledValues(c.currentTime);o.out.gain.setTargetAtTime(0,c.currentTime,.3);
+  setTimeout(function(){o.nodes.forEach(function(n){try{n.stop()}catch(e){}})},1500);o.b.setAttribute('aria-pressed','false');delete live[k]}
+$('sstop').onclick=function(){Object.keys(live).forEach(off)};
+$('vol').oninput=function(){if(master)master.gain.value=this.value/100};
+
+// mandala
+var cv=$('cv'),g=cv.getContext('2d'),col='#6bb3cf',N=8,down=false,lp=null;
+g.lineCap='round';g.lineJoin='round';g.lineWidth=4;
+function pt(e){var r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*600/r.width-300,y:(e.clientY-r.top)*600/r.height-300}}
+function seg(a,b){g.strokeStyle=col;
+  for(var k=0;k<N;k++){var t=2*Math.PI*k/N,c=Math.cos(t),s=Math.sin(t);
+    for(var f=-1;f<=1;f+=2){
+      g.beginPath();
+      g.moveTo(300+f*a.x*c-a.y*s,300+f*a.x*s+a.y*c);
+      g.lineTo(300+f*b.x*c-b.y*s,300+f*b.x*s+b.y*c);
+      g.stroke();
+    }}}
+cv.onpointerdown=function(e){down=true;lp=pt(e);cv.setPointerCapture(e.pointerId);seg(lp,lp)};
+cv.onpointermove=function(e){if(!down)return;var p=pt(e);seg(lp,p);lp=p};
+cv.onpointerup=cv.onpointercancel=function(){down=false};
+['#fca2a1','#f0c14b','#8fcfa4','#6bb3cf','#c98bb0','#ff8fa8'].forEach(function(c,i){
+  var b=document.createElement('button');b.className='sw';b.style.background=c;b.setAttribute('aria-label','Cor '+(i+1));b.setAttribute('aria-pressed',i===3);
+  b.onclick=function(){col=c;[].forEach.call($('sw').children,function(x){x.setAttribute('aria-pressed',x===b)})};
+  $('sw').appendChild(b);
+});
+document.querySelectorAll('[data-n]').forEach(function(b){b.onclick=function(){N=+b.dataset.n}});
+$('mclr').onclick=function(){g.clearRect(0,0,600,600)};
+})();
+</script>
+</body>
+</html>
